@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int MOD = 1e9 + 7;
+
+typedef long long ll;
+
+bool check(ll n){
+    if(n < 2){
+        return false;
+    }
+    for(int i = 2; i * i <= n; i++){
+        if(n % i == 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+void solve(){
+    int n; cin >> n;
+    ll a[n];
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    int res1, res2;
+    int Max = INT_MIN, Min = INT_MAX;
+    int d = 0;
+    for(int i = 0; i < n; i++){
+        if(a[i] > Max){
+            Max = a[i];
+            res1 = i;
+        }
+        if(a[i] <= Min){
+            Min = a[i];
+            res2 = i;
+        }
+        if(check(a[i])){
+            d++;
+        }
+    }
+    ll sum1 = Min * (*min_element(a + 1, a + n));
+    ll sum2 = Max * (*max_element(a, a + n - 1));
+    ll sum3 = max(sum1, sum2);
+    cout << Max << " " << res1 << endl;
+    cout << Min << " " << res2 << endl;
+    cout << d << endl;
+    cout << sum3 << endl;
+    bool ok = true;
+    for(int i = 0; i < n / 2; i++){
+        if(a[i] != a[n - i - 1]){
+            cout << "NO\n";
+            ok = false;
+            break;
+        }
+    }
+    if(ok)
+    cout << "YES\n";
+    ll cnt = 1;
+    for(int i = 0; i < n; i++){
+        cnt = ((cnt % MOD) * (abs(a[i] % MOD))) % MOD;
+    }
+    cout << cnt << endl;
+}
+
+int main(){
+    solve();
+}
