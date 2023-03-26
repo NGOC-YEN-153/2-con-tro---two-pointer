@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main () {
+    string s;getline(cin,s);string t;getline(cin,t);
+    map<char,ll>mp1,mp2;
+    for(ll i=0;i<t.size();i++){
+        mp1[t[i]]++;
+    }
+    ll l = 0, ans = 1e18,cnt=0;
+    ll id=-1;
+    for(ll i=0;i<s.size();i++){
+        mp2[s[i]]++;
+        if(mp2[s[i]]<=mp1[s[i]])cnt++;
+        while(cnt==t.size()){
+            mp2[s[l]]--;
+            if(mp2[s[l]]<mp1[s[l]])cnt--;
+            if(ans>i-l+1){
+                ans=i-l+1;id=l;
+            }++l;
+        }
+    }
+    if(id==-1)cout<<id;
+    else cout<<s.substr(id,ans);
+}
