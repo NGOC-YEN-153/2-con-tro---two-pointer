@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    ll n,q;cin>>n>>q;ll a[n+1];for(ll i=1;i<=n;i++)cin>>a[i];
+    ll b[n+1];for(ll i=1;i<=n;i++)b[i]=0;
+    while(q--){
+        ll l,r;cin>>l>>r;
+        b[l]++;
+        if(r+1<=n)b[r+1]--;
+    }
+    ll sum=0;
+    vector<ll>v;
+    for(ll i=1;i<=n;i++){
+        sum+=b[i];
+        if(sum)v.push_back(sum);
+    }
+    sort(v.begin(),v.end(),greater<ll>());
+    sort(a+1,a+n+1,greater<ll>());
+    ll k=1,ans=0;
+    for(auto x:v){
+        ans+=x*a[k++];
+    }
+    cout<<ans;
+}
+int main(){
+    solve();    
+}
