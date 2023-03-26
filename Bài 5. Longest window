@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main () {
+    string s;getline(cin,s);
+    map<char,ll>mp;
+    ll l = 0, ans = 1;
+    for(ll i = 0;i < s.size(); i++){
+        mp[s[i]]++;
+        while(i-l+1!=mp.size()){
+            mp[s[l]]--;
+            if(!mp[s[l]])mp.erase(s[l]);
+            ++l;
+        }
+        ans=max(ans,i-l+1);
+    }
+    cout<<ans;
+}
