@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    ll n,s;cin>>n>>s;ll a[n+1];for(ll i=1;i<=n;i++)cin>>a[i];
+    ll b[n+1];for(ll i=0;i<=n;i++)b[i]=0;
+    ll prefix[n+1];
+    prefix[0]=0;
+    for(ll i=1;i<=n;i++)prefix[i]=prefix[i-1]+a[i];
+    ll idvipham=1;
+    for(ll i=1;i<=n;i++){
+        b[i]=b[i-1];
+        for(ll j=idvipham;j<=n;j++){
+            if(prefix[i]-prefix[j-1]>=s){
+                b[i]++;
+                idvipham++;
+            }
+            else break;
+        }
+    }
+    ll ans=0;
+    for(auto x:b)ans+=x;
+    cout<<ans;
+}
+int main(){
+    solve();    
+}
