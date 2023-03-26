@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main () {
+    string s;getline(cin,s);
+    map<char,ll>mp1,mp2;for(int i=0;i<s.size();i++)mp1[s[i]]++;
+    ll cnt = mp1.size();
+    ll l = 0, ans = 1e18;
+    for(ll i = 0;i < s.size(); i++){
+        mp2[s[i]]++;
+        while(mp2.size()==cnt){
+            mp2[s[l]]--;
+            if(!mp2[s[l]])mp2.erase(s[l]);
+            ans=min(ans,i-l+1);
+            ++l;
+        }
+    }
+    cout<<ans;
+}
