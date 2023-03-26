@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    ll n,k;cin>>n>>k;ll a[n];for(ll i=0;i<n;i++)cin>>a[i];sort(a,a+n);
+    ll ok=0;
+    for(ll i=0;i<n;i++){
+        ll l=i+1,r=n-1;
+        while(l<r){
+            ll x=a[l]+a[r];
+            if(x==k-a[i]){
+                ok=1;break;
+            }
+            else if(x<k-a[i]){
+                ++l;
+            }
+            else --r;
+        }
+    }
+    if(ok)cout<<"YES";
+    else cout<<"NO";
+}
+int main(){
+    solve();
+}
