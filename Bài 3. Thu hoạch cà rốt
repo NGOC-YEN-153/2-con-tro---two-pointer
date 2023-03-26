@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+ll n,m;ll a[1005][1005],b[1005][1005],q;
+void solve(){
+    cin>>n>>m;
+    for(ll i=1;i<=n;i++){
+        for(ll j=1;j<=m;j++)cin>>a[i][j];
+    }
+    for(ll i=0;i<=n;i++){
+        for(ll j=0;j<=m;j++){
+            b[i][j]=0;
+        }
+    }
+    for(ll i=1;i<=n;i++){
+        for(ll j=1;j<=m;j++){
+            b[i][j]=a[i][j]+b[i-1][j]+b[i][j-1]-b[i-1][j-1];
+        }
+    }
+    cin>>q;
+    while(q--){
+        ll x1,x2,y1,y2;cin>>x1>>x2>>y1>>y2;
+        cout<<b[x2][y2]-b[x1-1][y2]-b[x2][y1-1]+b[x1-1][y1-1]<<endl;
+    }
+}
+int main(){
+    solve();    
+}
