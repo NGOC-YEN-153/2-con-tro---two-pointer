@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main () {
+    ll n,k,cnt=0;cin>>n>>k; ll a[n];for(ll i=0;i<n;i++){
+        cin>>a[i];
+        if(a[i])cnt++;
+}
+    ll sum=0,ans=1e18,l=0;
+    for(ll i=0;i<k;i++){
+        if(!a[i])sum++;
+    }
+    ans=min(ans,sum);
+    for(ll i=k;i<n;i++){
+        if(!a[l])sum--;
+        if(!a[i])sum++;
+        ++l;
+        ans=min(ans,sum);
+    }
+    if(cnt<k)cout<<-1;
+    else cout<<ans;
+}
