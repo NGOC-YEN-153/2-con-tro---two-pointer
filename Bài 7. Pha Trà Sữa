@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+ll X[1000000]={0},Y[200010],res[200010];
+void solve(){
+    ll n,k,q;cin>>n>>k>>q;
+    while(n--){
+        ll l,r;cin>>l>>r;
+        X[l]++;
+        X[r+1]--;
+    }
+    ll sum=0;
+    for(ll i=1;i<200005;i++){
+        Y[i]=sum+X[i];
+        sum+=X[i];
+    }
+    res[0]=0;
+    for(ll i=1;i<=200000;i++){
+        if(Y[i]>=k)res[i]=res[i-1]+1;
+        else res[i]=res[i-1];
+    }
+    while(q--){
+        ll l,r;cin>>l>>r;
+        if(Y[l]>=k)cout<<res[r]-res[l]+1<<endl;
+        else cout<<res[r]-res[l]<<endl;
+    }
+}
+int main(){
+    solve();    
+}
