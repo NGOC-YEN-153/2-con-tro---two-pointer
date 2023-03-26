@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    ll n,k;cin>>n>>k;
+    ll a[n];for(ll i=0;i<n;i++)cin>>a[i];
+    ll l=0;
+    map<ll,ll>mp;
+    for(ll i=0;i<k;i++){
+        mp[a[i]]++;
+    }
+    cout<<(*mp.begin()).first<<" "<<(*--mp.end()).first<<endl;
+    for(ll i=k;i<n;i++){
+        mp[a[i]]++;
+        mp[a[l]]--;
+        if(!mp[a[l]])mp.erase(a[l]);
+        ++l;
+        cout<<(*mp.begin()).first<<" "<<(*--mp.end()).first<<endl;
+    }
+}
+int main(){
+    solve();
+}
+
