@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    string s;ll x,y;cin>>s>>x>>y;
+    ll n=s.size();
+    ll l=0,kiluc=-1e18,cnt2=0,cnt8=0;
+    for(ll i=0;i<n;i++){
+        if(s[i]=='2')cnt2++;
+        else cnt8++;
+        while(cnt2>x || cnt8>y){
+            if(s[l]=='2')cnt2--;
+            else cnt8--;
+            ++l;
+        }
+        kiluc=max(kiluc,i-l+1);
+    }
+    cout<<kiluc;
+}
+int main(){
+    solve();
+}
+
