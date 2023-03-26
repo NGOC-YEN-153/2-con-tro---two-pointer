@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main () {
+    ll n,k;cin>>n>>k; ll a[n];for(ll i=0;i<n;i++)cin>>a[i];
+    ll ok=0;map<ll,pair<ll,ll>>mp;
+    for(ll i=0;i<n;i++){
+        mp[a[i]].first++;mp[a[i]].second=i;
+        if(mp[a[i]].first>1 && i-mp[a[i]].second<=k )ok=1;
+    }
+    if(ok)cout<<"YES";
+    else cout<<"NO";
+}
