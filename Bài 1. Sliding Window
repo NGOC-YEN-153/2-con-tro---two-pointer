@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long  long
+void solve(){
+    ll n,k;cin>>n>>k;
+    ll a[n];for(ll i=0;i<n;i++)cin>>a[i];
+    ll sum=0,l=0,id1=0,id2=k-1;
+    for(ll i=0;i<k;i++)sum+=a[i];
+    ll ans=sum;
+    for(ll i=k;i<n;i++){
+        sum-=a[l];
+        sum+=a[i];++l;
+        if(sum>ans){
+            ans=sum;
+            id1=l;id2=i;
+        }
+    }
+    cout<<ans<<endl;
+    for(ll i=id1;i<=id2;i++)cout<<a[i]<<" ";
+}
+int main(){
+    solve();
+}
+
